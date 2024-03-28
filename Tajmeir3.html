@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+<style>
+
+/*
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap" rel="stylesheet">
+
+*/
+
+
+input {
+	font-size: 22px;
+}
+
+
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #F6C961;
+}
+div {
+  height: 500px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Londrina Shadow', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #aaaaaa;
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: #bbbbbb;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(255,255,255,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  
+  height: 380;
+  width: 900;
+  
+  background-image: url("https://s7d1.scene7.com/is/image/mcdonalds/DC_202012_0116_SpicyCrispyChicken_PotatoBun_832x472:product-header-desktop?product-header-desktop&wid=830&hei=458&dpr=off");
+}
+.second{
+
+  height: 900;
+  width: 600;
+  
+  
+  background-image: url("https://s7d1.scene7.com/is/image/mcdonalds/DC_202201_0007-005_QuarterPounderwithCheese_832x472:nutrition-calculator-tile");
+}
+.dessert{
+  
+  height: 400;
+  width: 600;
+  text-align: justify;
+  background-image: url("https://s7d1.scene7.com/is/image/mcdonalds/Header_BigMac_832x472:product-header-desktop?wid=830&hei=456&dpr=off");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>McRonalds</h1>
+<h2>Im Liking It</h2>
+<div class="first">
+	<input class="quantities" type="number" min="0" style="width: 50px">
+  <p> Spicy McCrispy <span class="price">$5.99</span><br />
+  <small>With our Spicy Pepper Sauce topping the southern style fried chicken fillet on a toasted potato roll, this sandwich was made for those who like it crispy, juicy, tender and hot.
+
+</small></p>
+</div>
+
+<div class="second">
+<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Quarter Pounder with Cheese<span class="price">$22</span><br />
+  <small>Each Quarter Pounder with Cheese burger features a ¼ lb.* of 100% fresh beef that’s hot, deliciously juicy and cooked when you order. What comes on a Quarter Pounder? Each fresh beef burger is seasoned with just a pinch of salt and pepper, sizzled on a flat iron grill, then topped with slivered onions, tangy pickles and two slices of melty American cheese on a sesame seed bun. Our QPC® contains no artificial flavors, preservatives or added colors from artificial sources. </small></p>
+</div>
+   
+<div class="dessert">
+<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Big Mac <span class="price">$8</span><br />
+  <small>Ever wondered what's on a Big Mac®? The McDonald's Big Mac® is a 100% beef burger with a taste like no other. The mouthwatering perfection starts with two 100% pure all beef patties and Big Mac® sauce sandwiched between a sesame seed bun. It’s topped off with pickles, crisp shredded lettuce, finely chopped onion, and a slice of American cheese. It contains no artificial flavors, preservatives, or added colors from artificial sources. </small></p>
+</div>
+
+<br><br>
+<br><br>
+<input id="Name" type="username" placeholder="Your username">
+<input id="Email" type="Email" placeholder="Your email">
+
+<br><br>
+<br><br>
+<input id="submit" type="submit">
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+  
+  
+  
+</script>
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBtJr7PVBSEkUkR8rBUkaKrqghjihP61fk",
+    authDomain: "tajmeir3.firebaseapp.com",
+    projectId: "tajmeir3",
+    storageBucket: "tajmeir3.appspot.com",
+    messagingSenderId: "813112906595",
+    appId: "1:813112906595:web:6c628e1513fbc8acdfb956"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  
+  
+  
+  
+  
+const Name = document.querySelector("#Name") 
+const Email = document.querySelector("#Email")
+  const prices = document.querySelectorAll(".price")
+  
+document.querySelector('#submit').addEventListener('click', Submit)
+const quantities = document.querySelectorAll(".quantities") 
+const itemsList = ["McCrispy", "Quarter", "BigMac"]
+	
+	
+	function Submit() {
+	  const timestamp = buildTimestamp()
+      	 
+let total = 0	 
+	 
+	   let cart = { }
+      	  	for  (let i=0; i<quantities.length; i=i+1) {
+      	  	  if (quantities[i].value != "0" && quantities[i].value != "") {
+			let price = prices[i].innerHTML.replace('$', '')
+			total = total + quantities[i].value * price 			  	
+      	  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+      	  	}
+      	  	quantities[i].value = ""
+      	  }
+	  
+	  set(ref(db, timestamp), {
+	      Name: Name.value,
+	      email: Email.value,
+	      cart: cart,
+	      totalPrice: total,
+              paid: "not yet",
+	  
+		  
+	  });
+	  
+	  Name.value = ""
+	  Email.value = ""
+	  
+
+	}
+	function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+  
+	  return timestamp
+	}
+	
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+	
+  
+</script> 
+ 
+ 
+
+</body>
+ 
+
+ 
